@@ -7,6 +7,7 @@ public class IDandPasswords {
         logininfo.put("Emily", "12apple");
         logininfo.put("Adam","gators$234");
         logininfo.put("Alex","pizzA11");
+
     }
 
   //GETTER
