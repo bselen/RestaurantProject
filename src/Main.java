@@ -3,8 +3,12 @@ public class Main{
         IDandPasswords idandPasswords = new IDandPasswords();
 
 
+        ManageUser manageUser = new ManageUser("userList.dat");
+        manageUser.loadUsers();
+
+
         //INSTANCE
-        LoginPage loginPage = new LoginPage(idandPasswords.getLoginInfo());
+        LoginPage loginPage = new LoginPage(manageUser);
 
 
 

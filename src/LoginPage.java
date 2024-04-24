@@ -11,7 +11,7 @@ public class LoginPage implements ActionListener { //indicates that our class ca
     JButton loginButton = new JButton("Login");
     JButton   resetButton = new JButton("Reset");
     JButton signupButton = new JButton("Sign Up");
-
+    JButton guestButton = new JButton("Guest");
 
 
 
@@ -43,33 +43,38 @@ JLabel signUpMessage = new JLabel("");
     JLabel userPasswordLabel = new JLabel("Password: ");
     JLabel messageLabel = new JLabel("");
 
-    HashMap<String,String> logininfo =  new HashMap< String,String>(); //copy of our hash map so other methods can use it globally
+    private ManageUser manageUser; //Changed it from IDandPasswords. We might not need that class anymore
+    private HashMap<String, String> loginInfo;
 
     //CONSTRUCTOR LOGIN
-    LoginPage(HashMap<String,String> loginInfoOriginal){
+    public LoginPage(ManageUser manageUser){
+        this.loginInfo = loginInfo;
+        this.manageUser = manageUser; //To interact with user data
 
-     logininfo = loginInfoOriginal;
+        userIDLabel.setBounds(50,100,75,25);
+        userPasswordLabel.setBounds(50,150,75,25);
 
-     userIDLabel.setBounds(50,100,75,25);
-     userPasswordLabel.setBounds(50,150,75,25);
+        messageLabel.setBounds(100,250,250,35);
+        messageLabel.setFont(new Font(null,Font.ITALIC,25 ));
 
-     messageLabel.setBounds(100,250,250,35);
-     messageLabel.setFont(new Font(null,Font.ITALIC,25 ));
+        userIDField.setBounds(125,100,200,25);
+        userPasswordField.setBounds(125,150,200,25);
 
-     userIDField.setBounds(125,100,200,25);
-     userPasswordField.setBounds(125,150,200,25);
+        signupButton.setBounds(50,200,100,25);
+        signupButton.setFocusable(false);
+        signupButton.addActionListener(this);
 
-     signupButton.setBounds(325,200,100,25);
-     signupButton.setFocusable(false);
-     signupButton.addActionListener(this);
+        loginButton.setBounds(175,200,100,25);
+        loginButton.setFocusable(false); //When component has focus, any input  will be directed to that component.
+        loginButton.addActionListener(this);
 
-     loginButton.setBounds(125,200,100,25);
-     loginButton.setFocusable(false); //When component has focus, any input  will be directed to that component.
-     loginButton.addActionListener(this);
+        resetButton.setBounds(300,200,100,25);
+        resetButton.setFocusable(false); //When component has focus,any input  will be directed to that component.
+        resetButton.addActionListener(this);
 
-     resetButton.setBounds(225,200,100,25);
-     resetButton.setFocusable(false); //When component has focus,any input  will be directed to that component.
-     resetButton.addActionListener(this);
+        guestButton.setBounds(225,250, 100, 25);
+        guestButton.setFocusable(false);
+        guestButton.addActionListener(this);
 
 /*
      signUpLabel.setBounds(50,50,75,25);
@@ -88,15 +93,15 @@ JLabel signUpMessage = new JLabel("");
 
      //LOGIN
 
-     frame.add(userIDLabel);
-     frame.add(userPasswordLabel);
-     frame.add(messageLabel);
-     frame.add(userIDField);
-     frame.add(userPasswordField);
-     frame.add(loginButton);
-     frame.add(resetButton);
-     frame.add(signupButton);
-
+        frame.add(userIDLabel);
+        frame.add(userPasswordLabel);
+        frame.add(messageLabel);
+        frame.add(userIDField);
+        frame.add(userPasswordField);
+        frame.add(loginButton);
+        frame.add(resetButton);
+        frame.add(signupButton);
+        frame.add(guestButton);
 
 
     /* //SIGN UP
@@ -108,10 +113,10 @@ JLabel signUpMessage = new JLabel("");
      */
 
      //FRAME SETUP
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     frame.setSize(420,420);
-     frame.setLayout(null);
-     frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420,320);
+        frame.setLayout(null);
+        frame.setVisible(true);
 
 
      //SIGNUP FRAME SETUP
@@ -126,12 +131,32 @@ JLabel signUpMessage = new JLabel("");
         if(e.getSource() == resetButton) {
             userIDField.setText("");
             userPasswordField.setText("");
+            messageLabel.setText(""); // To clear message label
         }
 
 
         else if (e.getSource() == loginButton) {
-                String userID = userIDField.getText();
+                String username = userIDField.getText();
                 String password = String.valueOf(userPasswordField.getPassword());
+
+                try{
+                    if (manageUser.authenticate(username,password)) { // add authenticate later
+                        messageLabel.setForeground(Color.GREEN);
+                        messageLabel.setText("Login Successful");
+
+                        //Add to go to Menu page
+                    }
+                    else {
+                        messageLabel.setForeground(Color.RED);
+                        messageLabel.setText("Login Failed: Incorrect username or password");
+                    }
+
+                }
+                catch (Exception ex) {
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setText("Error");
+                }
+            /*
             //CHECK IF USER ID EXISTS
             if (logininfo.containsKey(userID)) {
                 //CHECK IF PASSWORD MATCHES
@@ -139,7 +164,8 @@ JLabel signUpMessage = new JLabel("");
                     //LOGIN SUCCESSFUL
                     messageLabel.setForeground(Color.GREEN);
                     messageLabel.setText("Login Successful");
-
+                    frame.dispose();
+                    new MenuPage();
                 }
                 else{
                     //PASSWORD DOESN'T MATCH
@@ -153,8 +179,33 @@ JLabel signUpMessage = new JLabel("");
                 messageLabel.setForeground(Color.red);
                 messageLabel.setText("ID doesn't exist");
             }
-
+            */
         }
+        //Changed this to work with the user and manageUser class NEED TO FIX GIVES ERROR INSTEAD
+        //OF ADDING TO FILE
+        else if (e.getSource() == signupButton) {
+            String username = userIDField.getText();
+            String password = String.valueOf(userPasswordField.getPassword());
+
+            if (loginInfo.containsKey(username)) {
+                messageLabel.setForeground(Color.RED);
+                messageLabel.setText("Username is already in use");
+            }
+            else {
+                //Create new user and add to file
+                User newUser = new User(username, password);
+                manageUser.addUser(newUser);
+
+                loginInfo.put(username, password);
+                messageLabel.setForeground(Color.GREEN);
+                messageLabel.setText("Login Successful");
+
+                frame.dispose(); //close login page
+                new AccountInfoPage(newUser,false, manageUser);
+            }
+        }
+
+        /*
         else if(e.getSource() == signupButton){
             //Get user ID and password
              String userID = userIDField.getText();
@@ -169,10 +220,20 @@ JLabel signUpMessage = new JLabel("");
                  messageLabel.setForeground(Color.GREEN);
                  messageLabel.setText("Sign up successful! You can now login ");
 
-
-
                  }
              }
+             */
+
+        else if (e.getSource() == guestButton) {
+            //String guestUsername = generateRandomUsername(); implement later idk what class
+            //Should be in the format of GuestXXXX were the X are random digits.
+            String guestUsername = "GuestXXXX";
+            String password = "";
+
+            User user = new User(guestUsername, password);
+            frame.dispose();
+            new AccountInfoPage(user,true, manageUser);
+        }
          }
     }
 
