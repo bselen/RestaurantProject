@@ -63,7 +63,7 @@ import java.io.BufferedReader;
                 pzMenu.write("   $13.99\t");
                 pzMenu.write("   $17.99\t");
                 pzMenu.write("   $22.99\n");
-                pzMenu.write("\n\tHomestyle ranch, rotisserie grilled chicken \n\t    breast and applewood smoked bacon.\n\t\t Is your mouth watering yet?\n");
+                pzMenu.write("\n\tHomestyle ranch, rotisserie grilled chicken \n\t    breast and applewood smoked bacon.\n\t\tIs your mouth watering yet?\n");
 
                 pzMenu.write("\nHawaiian\t\t\t - \t");
                 pzMenu.write("   $10.99\t");
