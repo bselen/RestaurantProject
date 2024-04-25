@@ -64,38 +64,66 @@ public class AccountInfoPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Handle button click events
         if (e.getSource() == submitButton) {
+            // while loop to loop the action event until nonempty information is entered for variables.
+            boolean noEmptyFields = false;
+            while (!noEmptyFields) {
+                // to submit to user object
+                String name = nameField.getText();
+                String address = addressField.getText();
+                String cardHolderName = cardHolderField.getText();
+                String cardNumber = cardNumberField.getText();
+                String cvc = cvcField.getText();
+                String expirationDate = expirationField.getText();
 
-            // to submit to user object
-            String name = nameField.getText();
-            String address = addressField.getText();
-            String cardHolderName = cardHolderField.getText();
-            String cardNumber = cardNumberField.getText();
-            String cvc = cvcField.getText();
-            String expirationDate = expirationField.getText();
+                // checking for empty variables
+                if (name.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
+                }
+                if (address.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
+                }
+                if (cardHolderName.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
+                }
+                if (cardNumber.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
+                }
+                if (cvc.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
 
+                }
+                if (expirationDate.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                    break;
+                }
+                else {
+                    // terminates the loop
+                    noEmptyFields = true;
+                    //Add user info to user object for storage
+                    user.setName(name);
+                    user.setAddress(address);
+                    user.setCardHolderName(cardHolderName);
+                    user.setCardNumber(cardNumber);
+                    user.setCvc(cvc);
+                    user.setExpirationDate(expirationDate);
 
-            //Add user info to user object for storage
-            user.setName(name);
-            user.setAddress(address);
-            user.setCardHolderName(cardHolderName);
-            user.setCardNumber(cardNumber);
-            user.setCvc(cvc);
-            user.setExpirationDate(expirationDate);
-
-            //If guest then dont add to userList file go to menu page
-            if (!isGuest){
-                frame.dispose();
-                new MenuPage(user, manageUser);
+                    //If guest then dont add to userList file go to menu page
+                    if (!isGuest) {
+                        frame.dispose();
+                        new MenuPage(user, manageUser);
+                    } else {
+                        frame.dispose();
+                        manageUser.addUser(user); //I think change this to update field rather than save user
+                        new MenuPage(user, manageUser);
+                    }
+                }
+                // Perform validation of text
             }
-            else {
-                frame.dispose();
-                manageUser.addUser(user); //I think change this to update field rather than save user
-                new MenuPage(user, manageUser);
-            }
-            // Perform validation of text
-
         }
     }
-
-
 }

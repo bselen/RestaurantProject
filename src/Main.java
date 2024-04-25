@@ -12,7 +12,5 @@ public class Main{
         //Open up the login page
         LoginPage loginPage = new LoginPage(manageUser);
 
-
-
     }
 }
