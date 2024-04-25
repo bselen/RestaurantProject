@@ -81,8 +81,8 @@ TOPPINGS:($1 Per Additional Topping, Fresh Mozzarella Included)
 > Meats: Old World Pepperoni - Italian Sausage - Applewood Smoke Bacon - Slow Roasted Ham
          100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs
 
->Veggies: Bell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach
+> Veggies: Bell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach
           Fresh Tomatoes - Artichoke - Green Olives - Pepperoncini - Basil - Pineapple
 
->Cheese: Extra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago
+> Cheese: Extra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago
           Provolone - Gouda - Havarti - Muenster - Ricotta

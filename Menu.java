@@ -104,10 +104,10 @@ import java.io.BufferedReader;
                 pzMenu.write("\n> Meats: Old World Pepperoni - Italian Sausage - Applewood Smoke Bacon - Slow Roasted Ham\n");
                 pzMenu.write("         100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs\n");
 
-                pzMenu.write("\n>Veggies: Bell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach\n");
+                pzMenu.write("\n> Veggies: Bell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach\n");
                 pzMenu.write("          Fresh Tomatoes - Artichoke - Green Olives - Pepperoncini - Basil - Pineapple\n");
 
-                pzMenu.write("\n>Cheese: Extra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago\n");
+                pzMenu.write("\n> Cheese: Extra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago\n");
                 pzMenu.write("          Provolone - Gouda - Havarti - Muenster - Ricotta\n");
 
             } catch (IOException e) {
