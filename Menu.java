@@ -41,7 +41,7 @@ import java.io.BufferedReader;
                 pzMenu.write("   $15.99\t");
                 pzMenu.write("   $20.99\t");
                 pzMenu.write("   $26.99\n");
-                pzMenu.write("\n\t Pepperoni, ham, beef, seasoned pork, Italian sausage,\n\tonions, mushrooms, green bell peppers and black olives.\n\t\t       Now that's a mouthful.\n");
+                pzMenu.write("\n\t Pepperoni, ham, beef, seasoned pork, Italian sausage,\n\tonions, mushrooms, green bell peppers and black olives.\n\t\t\t    Now that's a mouthful.\n");
 
                 pzMenu.write("\nMeat Lovers\t\t\t - \t");
                 pzMenu.write("   $11.99\t");
