@@ -32,7 +32,18 @@ import java.util.List;
             }
         }
 
+
+        public void saveUsers() {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+                oos.writeObject(users);
+                System.out.println("Users successfully saved to " + fileName);
+            } catch (IOException e) {
+                System.err.println("Error saving users: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
         // save users to file
+        /*
         public void saveUsers() {
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
                 oos.writeObject(users);
@@ -40,7 +51,7 @@ import java.util.List;
                 System.err.println("Error saving users: " + e.getMessage());
             }
         }
-
+        */
         public void loadLoginInfo() {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data" + File.separator + "loginInfo.dat"))) {
                 loginInfo = (HashMap<String, String>) ois.readObject();

@@ -133,8 +133,6 @@ JLabel signUpMessage = new JLabel("");
             userPasswordField.setText("");
             messageLabel.setText(""); // To clear message label
         }
-
-
         else if (e.getSource() == loginButton) {
                 String username = userIDField.getText();
                 String password = String.valueOf(userPasswordField.getPassword());
@@ -187,7 +185,7 @@ JLabel signUpMessage = new JLabel("");
             String username = userIDField.getText();
             String password = String.valueOf(userPasswordField.getPassword());
 
-            if (loginInfo.containsKey(username)) {
+            if (manageUser.authenticate(username,password)) {
                 messageLabel.setForeground(Color.RED);
                 messageLabel.setText("Username is already in use");
             }
@@ -196,7 +194,6 @@ JLabel signUpMessage = new JLabel("");
                 User newUser = new User(username, password);
                 manageUser.addUser(newUser);
 
-                loginInfo.put(username, password);
                 messageLabel.setForeground(Color.GREEN);
                 messageLabel.setText("Login Successful");
 

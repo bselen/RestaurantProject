@@ -73,6 +73,15 @@ public class AccountInfoPage implements ActionListener {
             String cvc = cvcField.getText();
             String expirationDate = expirationField.getText();
 
+
+            //Add user info to user object for storage
+            user.setName(name);
+            user.setAddress(address);
+            user.setCardHolderName(cardHolderName);
+            user.setCardNumber(cardNumber);
+            user.setCvc(cvc);
+            user.setExpirationDate(expirationDate);
+
             //If guest then dont add to userList file go to menu page
             if (!isGuest){
                 frame.dispose();
