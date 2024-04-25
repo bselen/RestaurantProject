@@ -105,7 +105,7 @@ import java.io.BufferedReader;
                 pzMenu.write("         \t100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs\n");
 
                 pzMenu.write("\n> Veggies: \tBell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach\n");
-                pzMenu.write("           \tFresh Tomatoes - Artichoke - Green Olives - Pepperoncini - Basil - Pineapple\n");
+                pzMenu.write("           \tFresh Tomatoes - Artichoke - Green Olives - Pepperchinis - Basil - Pineapple\n");
 
                 pzMenu.write("\n> Cheese: \tExtra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago\n");
                 pzMenu.write("          \tProvolone - Gouda - Havarti - Muenster - Ricotta\n");
