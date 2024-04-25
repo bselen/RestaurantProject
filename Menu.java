@@ -100,7 +100,7 @@ import java.io.BufferedReader;
                 pzMenu.write("\nSAUCE:(Included)\n");
                 pzMenu.write("\tRobust Tomato \t\t : \t Hearty Marinara \t : \t Creamy Alfredo\n\tHomestyle Ranch \t : \t Spicy Buffalo \t\t : \t Tangy Barbeque\n");
 
-                pzMenu.write("\nTOPPINGS:($1 Per Additional Topping, Fresh Mozzarella Included)\n");
+                pzMenu.write("\nTOPPINGS:(Fresh Mozzarella and One Topping of choice Included : $1 Per Each Additional Topping)\n");
                 pzMenu.write("\n> Meats: \tOld World Pepperoni - Italian Sausage - Applewood Smoke Bacon - Slow Roasted Ham\n");
                 pzMenu.write("         \t100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs\n");
 
