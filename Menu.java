@@ -101,14 +101,14 @@ import java.io.BufferedReader;
                 pzMenu.write("\tRobust Tomato \t\t : \t Hearty Marinara \t : \t Creamy Alfredo\n\tHomestyle Ranch \t : \t Spicy Buffalo \t\t : \t Tangy Barbeque\n");
 
                 pzMenu.write("\nTOPPINGS:($1 Per Additional Topping, Fresh Mozzarella Included)\n");
-                pzMenu.write("\n> Meats: Old World Pepperoni - Italian Sausage - Applewood Smoke Bacon - Slow Roasted Ham\n");
-                pzMenu.write("         100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs\n");
+                pzMenu.write("\n> Meats: \tOld World Pepperoni - Italian Sausage - Applewood Smoke Bacon - Slow Roasted Ham\n");
+                pzMenu.write("         \t100% All-American Beef - Rotisserie Grilled Chicken - Seasoned Pork - Meatballs\n");
 
-                pzMenu.write("\n> Veggies: Bell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach\n");
-                pzMenu.write("           Fresh Tomatoes - Artichoke - Green Olives - Pepperoncini - Basil - Pineapple\n");
+                pzMenu.write("\n> Veggies: \tBell Peppers - Mushrooms - Onions - Black Olives - Jalapeños - Fresh Spinach\n");
+                pzMenu.write("           \tFresh Tomatoes - Artichoke - Green Olives - Pepperoncini - Basil - Pineapple\n");
 
-                pzMenu.write("\n> Cheese: Extra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago\n");
-                pzMenu.write("          Provolone - Gouda - Havarti - Muenster - Ricotta\n");
+                pzMenu.write("\n> Cheese: \tExtra Fresh Mozzarella - Feta - Cheddar - Parmesan - Asiago\n");
+                pzMenu.write("          \tProvolone - Gouda - Havarti - Muenster - Ricotta\n");
 
             } catch (IOException e) {
                 System.err.println("Error writing to Menu.txt: " + e.getMessage());
