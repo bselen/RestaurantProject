@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /* this menu is not connected at all to the main program and the buttons
- don't save any data */
+ don't save or send any data */
 public class Menu implements ActionListener {
     JFrame frame = new JFrame("Menu");
     JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
