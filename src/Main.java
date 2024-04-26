@@ -1,8 +1,23 @@
-public class Main{
-    public static void main(String[] args){
+import java.util.HashMap;
 
-       new LoginGUI();
-        IDandPasswords idandPasswords = new IDandPasswords();
+public class Main {
+    public static void main(String[] args) {
+
+        LoginGUI loginGUI = new LoginGUI();
+
+
+        IDandPasswords iDandPasswords = new IDandPasswords();
+
+        HashMap<String, String> loginInfo = iDandPasswords.getLoginInfo();
+        loginGUI.printLoginInfo(loginInfo);
+    }
+}
+
+      //  SignUp signUp = new SignUp(iDandPasswords.getLoginInfo());
+
+      //  signUp.printLoginInfo();
+
+
 
 
         //INSTANCE
@@ -10,5 +25,6 @@ public class Main{
 
 
 
-    }
-}
+
+
+
