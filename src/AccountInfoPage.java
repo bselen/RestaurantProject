@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AccountInfoPage implements ActionListener {
 
@@ -64,7 +66,7 @@ public class AccountInfoPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Handle button click events
         if (e.getSource() == submitButton) {
-            // while loop to loop the action event until nonempty information is entered for variables.
+            // while loop to loop the action event until acceptable information is entered for variables.
             boolean noEmptyFields = false;
             while (!noEmptyFields) {
                 // to submit to user object
@@ -76,29 +78,46 @@ public class AccountInfoPage implements ActionListener {
                 String expirationDate = expirationField.getText();
 
                 // checking for empty variables
-                if (name.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                if (name.isEmpty() || address.isEmpty() || cardHolderName.isEmpty() || cardNumber.isEmpty() || cvc.isEmpty() || expirationDate.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in all the blank fields and resubmit");
                     break;
                 }
-                if (address.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
-                    break;
-                }
-                if (cardHolderName.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
-                    break;
-                }
-                if (cardNumber.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
-                    break;
-                }
-                if (cvc.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
-                    break;
 
+                // Checking if name variable contains only alphabet characters (space included)
+
+                // Regular expression to match only alphabet characters
+                String regex = "^[a-zA-Z\\s]+$";
+
+                Pattern pattern = Pattern.compile(regex);
+
+                // Matching the input string against the pattern
+                Matcher matcher = pattern.matcher(name);
+
+                // Checking if the string contains only alphabet characters
+                if (!matcher.matches()) {
+                    JOptionPane.showMessageDialog(frame, "Name contains non-alphabet characters. Please resubmit.");
+                    break;
                 }
-                if (expirationDate.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in the blank field(s) and resubmit");
+                // Checking if cardholder name contains only alphabet characters (space included).
+                matcher = pattern.matcher(cardHolderName);
+                if (!matcher.matches()) {
+                    JOptionPane.showMessageDialog(frame, "Cardholder name contains non-alphabet characters. Please resubmit.");
+                    break;
+                }
+                // Checking if credit card number contains only numbers and allows hyphens
+                String regexCC = "^[0-9\\-]+$";
+                Pattern patternCC = Pattern.compile(regexCC);
+                matcher = patternCC.matcher(cardNumber);
+                if (!matcher.matches()) {
+                    JOptionPane.showMessageDialog(frame, "Card number contains invalid characters. Please resubmit.");
+                    break;
+                }
+                // Checking that cvc has only numbers
+                String regexCVC = "^[0-9]{3,4}$";
+                Pattern patternCVC = Pattern.compile(regexCVC);
+                matcher = patternCVC.matcher(cvc);
+                if (!matcher.matches()) {
+                    JOptionPane.showMessageDialog(frame, "CVC contains invalid characters or is not 3-4 digits. Please resubmit.");
                     break;
                 }
                 else {
