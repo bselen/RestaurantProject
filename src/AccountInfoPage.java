@@ -67,8 +67,8 @@ public class AccountInfoPage implements ActionListener {
         // Handle button click events
         if (e.getSource() == submitButton) {
             // while loop to loop the action event until acceptable information is entered for variables.
-            boolean noEmptyFields = false;
-            while (!noEmptyFields) {
+            boolean acceptableInput = false;
+            while (!acceptableInput) {
                 // to submit to user object
                 String name = nameField.getText();
                 String address = addressField.getText();
@@ -122,7 +122,7 @@ public class AccountInfoPage implements ActionListener {
                 }
                 else {
                     // terminates the loop
-                    noEmptyFields = true;
+                    acceptableInput = true;
                     //Add user info to user object for storage
                     user.setName(name);
                     user.setAddress(address);
