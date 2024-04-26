@@ -11,6 +11,7 @@ public class Main{
         //INSTANCE
         //Open up the login page
         LoginPage loginPage = new LoginPage(manageUser);
+        Menu menu = new Menu();
 
     }
 }
