@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-// this menu is not connected to the main program
-
 public class Menu implements ActionListener {
-    JFrame frame = new JFrame("Menu");
+    JFrame menuframe = new JFrame("Menu");
     JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
     JLabel cheesePizza = new JLabel("Cheese Pizza: $7");
     JLabel pepperoniPizza = new JLabel("Pepperoni Pizza: $10");
@@ -23,8 +21,8 @@ public class Menu implements ActionListener {
     JLabel mushroomPizza = new JLabel("Mushroom Pizza: $10");
     JButton mushroomPizzaButton = new JButton("Order");
     JButton submitButton = new JButton("Submit");
-    List<String> pizzasSelected = new ArrayList<>();
-    double total = 0;
+    static List<String> pizzasSelected = new ArrayList<>();
+    static double total = 0;
 
 
 
@@ -52,11 +50,10 @@ public class Menu implements ActionListener {
         panel.add(mushroomPizzaButton);
         panel.add(new JLabel());
         panel.add(submitButton);
-        frame.add(panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
-        frame.setVisible(true);
+        menuframe.add(panel);
+        menuframe.setSize(500, 500);
+        menuframe.setLocationRelativeTo(null); // Center the menuframe on the screen
+        menuframe.setVisible(true);
         cheesePizzaButton.addActionListener(this);
         pepperoniPizzaButton.addActionListener(this);
         sausagePizzaButton.addActionListener(this);
@@ -64,6 +61,8 @@ public class Menu implements ActionListener {
         pineapplePizzaButton.addActionListener(this);
         mushroomPizzaButton.addActionListener(this);
         submitButton.addActionListener(this);
+
+
     }
 
     @Override
@@ -102,15 +101,16 @@ public class Menu implements ActionListener {
             System.out.println("submitButton pressed");
             System.out.println(pizzasSelected);
             System.out.println(total);
-            frame.dispose();
+            menuframe.dispose();
         }
 
     }
-    public List<String> getPizzasSelected() {
+
+    public static List<String> getPizzasSelected() {
         return pizzasSelected;
     }
 
-    public double menuGetTotal() {
+    public static double menuGetTotal() {
         return total;
     }
 }
