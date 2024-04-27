@@ -72,4 +72,11 @@ import java.util.List;
             return false;
 
         }
+
+        //Need function to list all available users
+        public void listUsers(){
+            for (User user : users) {
+                System.out.println(user);
+            }
+        }
     }

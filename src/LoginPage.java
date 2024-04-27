@@ -43,13 +43,17 @@ JLabel signUpMessage = new JLabel("");
     JLabel userPasswordLabel = new JLabel("Password: ");
     JLabel messageLabel = new JLabel("");
 
+    //Varibles from other classes needed.
     private ManageUser manageUser; //Changed it from IDandPasswords. We might not need that class anymore
     private HashMap<String, String> loginInfo;
+    private Staff staff;
 
     //CONSTRUCTOR LOGIN
-    public LoginPage(ManageUser manageUser){
+    public LoginPage(ManageUser manageUser, Staff staff){
+        //Loading passed variables.
         this.loginInfo = loginInfo;
         this.manageUser = manageUser; //To interact with user data
+        this.staff = staff;
 
         userIDLabel.setBounds(50,100,75,25);
         userPasswordLabel.setBounds(50,150,75,25);
@@ -76,22 +80,6 @@ JLabel signUpMessage = new JLabel("");
         guestButton.setFocusable(false);
         guestButton.addActionListener(this);
 
-/*
-     signUpLabel.setBounds(50,50,75,25);
-     newUserIDField.setBounds(125,100,200,25);
-     newUserPasswordField.setBounds(125,150,200,25);
-     signUpButton.setBounds(125,200,100,25);
-
-     signUpIDLabel.setBounds(175,100,75,25);
-     signUpPasswordLabel.setBounds(50,150,75,25);
-
-
-
-     signUpButton.addActionListener(this);
-
- */
-
-     //LOGIN
 
         frame.add(userIDLabel);
         frame.add(userPasswordLabel);
@@ -104,14 +92,6 @@ JLabel signUpMessage = new JLabel("");
         frame.add(guestButton);
 
 
-    /* //SIGN UP
-        frame.add(signUpLabel);
-        frame.add(newUserPasswordField);
-        frame.add(newUserIDField);
-        frame.add(signUpButton);
-
-     */
-
      //FRAME SETUP
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,320);
@@ -119,13 +99,10 @@ JLabel signUpMessage = new JLabel("");
         frame.setVisible(true);
 
 
-     //SIGNUP FRAME SETUP
-      //  frame.setSize(420,480);
-
     }
 
 
-    @Override
+
     public void actionPerformed(ActionEvent e) {
         //ALLOWS US TO RESET LOGIN INFO
         if(e.getSource() == resetButton) {
@@ -138,11 +115,19 @@ JLabel signUpMessage = new JLabel("");
                 String password = String.valueOf(userPasswordField.getPassword());
 
                 try{
-                    if (manageUser.authenticate(username,password)) { // add authenticate later
+                    if (manageUser.authenticate(username,password)) {
                         messageLabel.setForeground(Color.GREEN);
+
                         messageLabel.setText("Login Successful");
 
                         //Add to go to Menu page
+                    }
+                    else if (staff.authenticate(username,password)) {
+                        messageLabel.setForeground(Color.GREEN);
+                        messageLabel.setText("Login Successful");
+
+                        frame.dispose();
+                        new StaffPage(staff);
                     }
                     else {
                         messageLabel.setForeground(Color.RED);
@@ -154,30 +139,7 @@ JLabel signUpMessage = new JLabel("");
                     messageLabel.setForeground(Color.RED);
                     messageLabel.setText("Error");
                 }
-            /*
-            //CHECK IF USER ID EXISTS
-            if (logininfo.containsKey(userID)) {
-                //CHECK IF PASSWORD MATCHES
-                if (logininfo.get(userID).equals(password)){
-                    //LOGIN SUCCESSFUL
-                    messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Login Successful");
-                    frame.dispose();
-                    new MenuPage();
-                }
-                else{
-                    //PASSWORD DOESN'T MATCH
-                    messageLabel.setForeground(Color.red);
-                    messageLabel.setText("Invalid password");
-                }
 
-                }
-            else {
-                //USER ID DOESN'T MATCH
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("ID doesn't exist");
-            }
-            */
         }
         //Changed this to work with the user and manageUser class NEED TO FIX GIVES ERROR INSTEAD
         //OF ADDING TO FILE
@@ -201,26 +163,6 @@ JLabel signUpMessage = new JLabel("");
                 new AccountInfoPage(newUser,false, manageUser);
             }
         }
-
-        /*
-        else if(e.getSource() == signupButton){
-            //Get user ID and password
-             String userID = userIDField.getText();
-             String password = String.valueOf(userPasswordField.getPassword()); //retrieve the password and converts to a string and stores within a string
-
-             if(logininfo.containsKey(userID)) {
-                 messageLabel.setForeground(Color.CYAN);
-                 messageLabel.setText("Login successful");
-             }
-             else{
-                 logininfo.put(userID,password);
-                 messageLabel.setForeground(Color.GREEN);
-                 messageLabel.setText("Sign up successful! You can now login ");
-
-                 }
-             }
-             */
-
         else if (e.getSource() == guestButton) {
             //String guestUsername = generateRandomUsername(); implement later idk what class
             //Should be in the format of GuestXXXX were the X are random digits.

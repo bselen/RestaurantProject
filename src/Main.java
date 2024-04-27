@@ -2,15 +2,14 @@ public class Main{
     public static void main(String[] args){
         IDandPasswords idandPasswords = new IDandPasswords();
 
-        //Load up the ManageUser class to be able to handle user info.
-        //Loads saved user info from the save file.
+        //Inital startup loading information (Staff and User data)
         ManageUser manageUser = new ManageUser("userList.dat");
         manageUser.loadUsers();
-
+        Staff staff = new Staff();
 
         //INSTANCE
         //Open up the login page
-        LoginPage loginPage = new LoginPage(manageUser);
+        LoginPage loginPage = new LoginPage(manageUser, staff);
 
     }
 }
