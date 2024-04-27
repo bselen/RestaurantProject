@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 
 public class MenuPage extends JFrame implements ActionListener {
@@ -52,30 +51,9 @@ public class MenuPage extends JFrame implements ActionListener {
             Menu menu = new Menu();
         }
         if (e.getSource() == viewCartButton) {
-            // Create and display a new JFrame to show the cart contents
-            JFrame cartFrame = new JFrame("Cart");
-            cartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            cartFrame.setSize(500, 500);
-            cartFrame.setLocationRelativeTo(this);
-
-            // Get the list of selected pizzas from Menu
-            List<String> pizzasSelected = Menu.getPizzasSelected();
-            double total = Menu.menuGetTotal();
-            // Create a JTextArea to display the list of selected pizzas
-            JTextArea cartTextArea = new JTextArea(10, 20);
-            cartTextArea.setEditable(false);
-            JScrollPane scrollPane = new JScrollPane(cartTextArea);
-
-            // Add the list of pizzas to the JTextArea
-            for (String pizza : pizzasSelected) {
-                cartTextArea.append(pizza + "\n");
-            }
-
-            // Add the JTextArea to the cartFrame
-            cartFrame.add(scrollPane);
-            cartTextArea.append("Total: " + total);
-            // Make the cartFrame visible
-            cartFrame.setVisible(true);
+            // Create a new instance of viewCart and pass the cart data
+            viewCart cartFrame = new viewCart(Menu.getPizzasSelected(), Menu.menuGetTotal());
+            cartFrame.setVisible(true); // Make the cart frame visible
         }
     }
 }
