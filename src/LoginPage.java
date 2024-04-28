@@ -14,28 +14,6 @@ public class LoginPage implements ActionListener { //indicates that our class ca
     JButton guestButton = new JButton("Guest");
 
 
-
-
-
-
-    //SIGN
- /*
-
-    JLabel signUpLabel = new JLabel("Sign Up");
-    JPasswordField newUserPasswordField = new JPasswordField();
-    JTextField newUserIDField = new JTextField();
-    JButton signUpButton = new JButton("Sign Up");
-
-JLabel signUpIDLabel = new JLabel("User ID");
-JLabel signUpPasswordLabel = new JLabel("Password: ");
-JLabel signUpMessage = new JLabel("");
-*/
-
-
-
-
-
-
     //LOGIN
     JTextField userIDField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
@@ -120,7 +98,9 @@ JLabel signUpMessage = new JLabel("");
 
                         messageLabel.setText("Login Successful");
 
-                        //Add to go to Menu page
+                        User user = manageUser.getUser(username);
+                        frame.dispose();
+                        new MenuPage(user, manageUser);
                     }
                     else if (staff.authenticate(username,password)) {
                         messageLabel.setForeground(Color.GREEN);

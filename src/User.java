@@ -17,7 +17,6 @@ public class User implements Serializable {
 
     //CONSTRUCTOR
     public User(String username, String password){
-
         this.credentials = new HashMap<>();
         this.credentials.put(username, password);
         this.address = address;

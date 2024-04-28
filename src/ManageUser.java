@@ -1,12 +1,11 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
     public class ManageUser {
         private List<User> users;
         private String fileName; // File name to store user data
-        private HashMap<String, String> loginInfo;
+
         public ManageUser(String fileName) {
             this.fileName = "data" + File.separator + fileName; //Stores
             this.users = new ArrayList<>();
@@ -19,8 +18,6 @@ import java.util.List;
             saveUsers(); // Save users to file after adding a new user
         }
 
-
-
         // Load users from file
         public void loadUsers() {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
@@ -31,7 +28,6 @@ import java.util.List;
                 System.err.println("Error loading users: " + e.getMessage());
             }
         }
-
 
         public void saveUsers() {
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
@@ -52,16 +48,6 @@ import java.util.List;
             }
         }
         */
-        public void loadLoginInfo() {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data" + File.separator + "loginInfo.dat"))) {
-                loginInfo = (HashMap<String, String>) ois.readObject();
-            } catch (FileNotFoundException e) {
-                System.out.println("Login info file not found.");
-                loginInfo = new HashMap<>(); // Initialize an empty HashMap
-            } catch (IOException | ClassNotFoundException e) {
-                System.err.println("Error loading login info: " + e.getMessage());
-            }
-        }
 
         public boolean authenticate(String username, String password) {
             for (User user : users) {
@@ -71,6 +57,15 @@ import java.util.List;
             }
             return false;
 
+        }
+        //To get a user from the list.
+        public User getUser(String username) {
+            for (User user : users) {
+                if (user.getCredentials().containsKey(username)) {
+                    return user;
+                }
+            }
+            return null;
         }
 
         //Need function to list all available users
