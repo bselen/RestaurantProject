@@ -42,17 +42,6 @@ public class ManageMenuItem {
             e.printStackTrace();
         }
     }
-    // save users to file
-        /*
-        public void saveUsers() {
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-                oos.writeObject(users);
-            } catch (IOException e) {
-                System.err.println("Error saving users: " + e.getMessage());
-            }
-        }
-        */
-
 
     //Need function to list all available users
     public void listMenuItems(){
