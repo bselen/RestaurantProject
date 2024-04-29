@@ -106,8 +106,9 @@ public class LoginPage implements ActionListener { //indicates that our class ca
                         messageLabel.setForeground(Color.GREEN);
                         messageLabel.setText("Login Successful");
 
+                        ManageOrder manageOrder = new ManageOrder();
                         frame.dispose();
-                        new StaffPage(staff);
+                        new StaffPage(manageOrder);
                     }
                     else {
                         messageLabel.setForeground(Color.RED);

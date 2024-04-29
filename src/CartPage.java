@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class CartPage {
     private JFrame frame;
     private JPanel cartPanel;
-    private JButton backButton;
     private JButton submitButton;
 
     private User user;
@@ -31,23 +30,15 @@ public class CartPage {
         cartPanel = new JPanel();
         cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
 
-        // Initialize buttons
-        backButton = new JButton("Back to Menu");
+        // Initialize submit button
         submitButton = new JButton("Submit Order");
-
-        // Add action listeners to buttons
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new MenuPage(user, manageUser);
-            }
-        });
-
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Submit the order
+                ManageOrder manageOrder = new ManageOrder();
+                manageOrder.addOrder(user);
+
                 JOptionPane.showMessageDialog(frame, "Order submitted successfully!");
             }
         });
@@ -57,24 +48,39 @@ public class CartPage {
 
         // Add components to frame
         frame.add(cartPanel, BorderLayout.CENTER);
-        frame.add(backButton, BorderLayout.WEST);
-        frame.add(submitButton, BorderLayout.EAST);
+        frame.add(submitButton, BorderLayout.SOUTH);
 
         // Display frame
         frame.setVisible(true);
     }
 
     private void displayCartItems() {
+        // Clear previous items
+        cartPanel.removeAll();
 
         // Iterate over cart items and display them
         for (MenuItem item : order.getItems().keySet()) {
             int quantity = order.getItems().get(item);
 
+            JPanel itemPanel = new JPanel(new BorderLayout());
             JLabel itemLabel = new JLabel(item.getName() + " - Quantity: " + quantity);
-            cartPanel.add(itemLabel);
+            JButton removeButton = new JButton("Remove");
+            removeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Remove the item from the cart
+                    order.removeItem(item, 1); // Remove one quantity of the item
+                    displayCartItems(); // Update cart display
+                }
+            });
+
+            itemPanel.add(itemLabel, BorderLayout.WEST);
+            itemPanel.add(removeButton, BorderLayout.EAST);
+            cartPanel.add(itemPanel);
         }
+
+        // Refresh panel
+        cartPanel.revalidate();
+        cartPanel.repaint();
     }
-
-
-
 }
