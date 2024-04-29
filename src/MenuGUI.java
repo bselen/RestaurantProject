@@ -1,8 +1,9 @@
 import javax.swing.*;
-import  java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MenuGUI {
+public class MenuGUI extends JPanel {
     private JRadioButton pepperoniRadioButton;
     private JRadioButton fiveCheeseRadioButton;
     private JRadioButton margaritaRadioButton;
@@ -17,7 +18,25 @@ public class MenuGUI {
     private JCheckBox large1699CheckBox;
     private JButton submitButton;
 
+
+
+
     public MenuGUI() {
+
+        setLayout(new GridLayout(0, 1)); // Set layout to vertical
+        add(pepperoniRadioButton);
+        add(fiveCheeseRadioButton);
+        add(margaritaRadioButton);
+        add(supremeRadioButton);
+        add(medium1299CheckBox);
+        add(large1599CheckBox);
+        add(medium1099CheckBox);
+        add(large1399CheckBox);
+        add(medium1199CheckBox);
+        add(large1499CheckBox);
+        add(medium1399CheckBox);
+        add(large1699CheckBox);
+        add(submitButton);
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
