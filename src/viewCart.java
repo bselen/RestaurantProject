@@ -26,6 +26,28 @@ public class viewCart extends JFrame {
         JLabel totalLabel = new JLabel("Total: $" + total);
         cartPanel.add(totalLabel);
 
+
+        //PANEL FOR E SUBMIT BUTTON
+
+        JPanel submitPanel = new JPanel();
+        submitPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JButton submitButton = new JButton("Submit Order");
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayOrderConfirmation();
+
+            }
+        });
+        submitPanel.add(submitButton);
+
+        add(cartPanel, BorderLayout.CENTER);
+        add(submitPanel, BorderLayout.SOUTH);
+
+    }
+    private void displayOrderConfirmation(){
+        JOptionPane.showMessageDialog(null, "Your order hs been received. Thank you!");
+
         // Create a panel for the clear button
         JPanel clearPanel = new JPanel();
         clearPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Center-align button
@@ -49,5 +71,7 @@ public class viewCart extends JFrame {
         Menu.getPizzasSelected().clear(); // Clear the list of selected pizzas
         Menu.total = 0; // Reset the total
         dispose(); // Close the cart frame
+
+
     }
 }

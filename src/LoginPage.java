@@ -142,9 +142,15 @@ JLabel signUpMessage = new JLabel("");
                         messageLabel.setForeground(Color.GREEN);
                         messageLabel.setText("Login Successful");
 
+                  User loggedInUser =  new User(username,password);
+
                         //Add to go to Menu page
-                    }
-                    else {
+                         frame.dispose();
+
+
+                        new MenuPage(loggedInUser,manageUser);
+
+                    } else {
                         messageLabel.setForeground(Color.RED);
                         messageLabel.setText("Login Failed: Incorrect username or password");
                     }
