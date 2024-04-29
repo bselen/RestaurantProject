@@ -22,7 +22,6 @@ public class StaffPage extends JFrame implements ActionListener {
         // Add buttons to the JFrame
         add(ordersButton);
         add(editMenuButton);
-        add(editAccountButton);
 
         setVisible(true);
     }

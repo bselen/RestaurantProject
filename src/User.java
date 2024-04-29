@@ -7,6 +7,7 @@ public class User implements Serializable {
 
     private String name;
     private String address; //Used for delvery purposes
+    private Order order;
 
     //Payment information
     private String cardHolderName;
@@ -25,6 +26,7 @@ public class User implements Serializable {
         this.cvc = cvc;
         this.expirationDate = expirationDate;
         this.billingAddress = billingAddress;
+        this.order = new Order();
 
     }
     //GETTERS AND SETTERS
@@ -81,4 +83,5 @@ public class User implements Serializable {
         this.expirationDate = expirationDate;
     }
 
+    public Order getOrder() {return order;}
 }

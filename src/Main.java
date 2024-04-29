@@ -1,6 +1,6 @@
 public class Main{
     public static void main(String[] args){
-        IDandPasswords idandPasswords = new IDandPasswords();
+
 
         //Inital startup loading information (Staff and User data)
         ManageUser manageUser = new ManageUser("userList.dat");
