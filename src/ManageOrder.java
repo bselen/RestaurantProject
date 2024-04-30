@@ -1,28 +1,28 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageOrder {
-    private Map<User, Order> userOrders;
+    private List<User> users; // List to store user objects
     private String fileName; // File name to store order data
     private static final String FILE_PATH = "data" + File.separator + "orders.dat";
 
     public ManageOrder() {
-        this.userOrders = new HashMap<>();
+        this.users = new ArrayList<>();
         this.fileName = FILE_PATH;
         this.loadOrders(); // Load orders from file when ManageOrder is instantiated
     }
 
-    // Add an order for a user
+    // Add a user to the list
     public void addOrder(User user) {
-        userOrders.put(user, user.getOrder());
-        saveOrders(); // Save orders to file after adding a new order
+        users.add(user);
+        saveOrders(); // Save orders to file after adding a new user
     }
 
     // Load orders from file
     public void loadOrders() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            userOrders = (Map<User, Order>) ois.readObject();
+            users = (List<User>) ois.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("Order file not found. Creating a new one.");
         } catch (IOException | ClassNotFoundException e) {
@@ -30,24 +30,25 @@ public class ManageOrder {
         }
     }
 
-    // Save orders to file
+    // Save to files
     public void saveOrders() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oos.writeObject(userOrders);
+            oos.writeObject(users);
             System.out.println("Orders successfully saved to " + fileName);
         } catch (IOException e) {
             System.err.println("Error saving orders: " + e.getMessage());
         }
     }
 
-    // Get all user orders
-    public Map<User, Order> getUserOrders() {
-        return userOrders;
+    // Get all users
+    public List<User> getUsers() {
+        return users;
     }
 
-    // Remove an order for a user
-    public void removeOrder(User user) {
-        userOrders.remove(user);
-        saveOrders(); // Save orders to file after removing an order
+    // Remove a user
+    public void removeUser(User user) {
+        users.remove(user);
+        saveOrders(); // Save orders to file after removing a user
     }
+
 }

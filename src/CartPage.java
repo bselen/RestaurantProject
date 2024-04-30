@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class CartPage {
     private JFrame frame;
     private JPanel cartPanel;
     private JButton submitButton;
+    private JLabel totalLabel; // New label to display total
 
     private User user;
     private Order order;
@@ -18,7 +20,9 @@ public class CartPage {
         this.order = user.getOrder();
         this.cartPanel = new JPanel();
 
-        displayCartItems();
+        // Initialize total label
+        totalLabel = new JLabel("Total: $" + calculateTotal());
+        totalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Initialize frame
         frame = new JFrame("Cart");
@@ -40,15 +44,17 @@ public class CartPage {
                 manageOrder.addOrder(user);
 
                 JOptionPane.showMessageDialog(frame, "Order submitted successfully!");
+                frame.dispose();
             }
         });
 
         // Display user's cart items
         displayCartItems();
 
-        // Add components to frame
+        // Add components to screen
         frame.add(cartPanel, BorderLayout.CENTER);
         frame.add(submitButton, BorderLayout.SOUTH);
+        frame.add(totalLabel, BorderLayout.NORTH); // Add total label to the top
 
         // Display frame
         frame.setVisible(true);
@@ -71,6 +77,7 @@ public class CartPage {
                     // Remove the item from the cart
                     order.removeItem(item, 1); // Remove one quantity of the item
                     displayCartItems(); // Update cart display
+                    updateTotal(); // Update total label when an item is removed
                 }
             });
 
@@ -79,8 +86,27 @@ public class CartPage {
             cartPanel.add(itemPanel);
         }
 
-        // Refresh panel
+        // Refresh screen
         cartPanel.revalidate();
         cartPanel.repaint();
+
+        // Update total label
+        updateTotal();
+    }
+
+    // Calculate total price of items in the cart
+    private double calculateTotal() {
+        double total = 0.0;
+        for (Map.Entry<MenuItem, Integer> entry : order.getItems().entrySet()) {
+            MenuItem item = entry.getKey();
+            int quantity = entry.getValue();
+            total += item.getPrice() * quantity;
+        }
+        return total;
+    }
+
+    // Update total label with the current total
+    private void updateTotal() {
+        totalLabel.setText("Total: $" + calculateTotal());
     }
 }
